@@ -11,7 +11,7 @@ import {
 import TableFilter from "./table.filter.js";
 import "./table.css";
 
-const TableSort = (props) => {
+const TableSort = ({loadIssues, headerText, data}) => {
   const [isActive, setIsActive] = useState(true);
 
   //const { issues, setIssues } = useContext(IssuesContext);
@@ -33,7 +33,7 @@ const TableSort = (props) => {
 
   const handleSorting = (sortField, sortOrder) => {
     if (sortField) {
-      const sorted = [...props.data].sort((a, b) => {
+      const sorted = [...data].sort((a, b) => {
         if (a[sortField] === null) {
           return 1;
         }
@@ -49,36 +49,36 @@ const TableSort = (props) => {
           }) * (sortOrder === "asc" ? 1 : -1)
         );
       });
-      props.loadIssues(sorted);
+      loadIssues(sorted);
     }
   };
 
   return (
     <th
       className="columnHeader"
-      key={props.headerText}
+      key={headerText}
       style={{ backgroundColor: isActive ? "#607085" : "#435060" }}
-      onClick={() => handleSortingChange(props.headerText)}
+      onClick={() => handleSortingChange(headerText)}
     >
       <div>
         <div className="buttonsAndLabel">
           <div style={{}}>
-            {props.headerText === ID ? (
+            {headerText === ID ? (
               NO
-            ) : props.headerText.toUpperCase() |
-              (props.headerText === ISSUETYPE) ? (
+            ) : headerText.toUpperCase() |
+              (headerText === ISSUETYPE) ? (
               ISSUE_TYPE
-            ) : props.headerText.toUpperCase() |
-              (props.headerText.toUpperCase() === SELECTOR ||
-                props.headerText.toUpperCase() === URL) ? (
+            ) : headerText.toUpperCase() |
+              (headerText.toUpperCase() === SELECTOR ||
+                headerText.toUpperCase() === URL) ? (
               <TableFilter
-                key={props.headerText}
-                issues={props.data}
-                headerText={props.headerText}
-                loadIssues={props.loadIssues}
+                key={headerText}
+                issues={data}
+                headerText={headerText}
+                loadIssues={loadIssues}
               />
             ) : (
-              props.headerText.toUpperCase()
+              headerText.toUpperCase()
             )}
           </div>
           <div className="sortButtonsContainer">

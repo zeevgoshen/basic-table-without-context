@@ -2,11 +2,11 @@ import React from "react";
 import TableSort from "./table.sort.js";
 import "./table.css";
 
-const TableHeaders = (props) => {
+const TableHeaders = ({headernames, loadIssues}) => {
   let headers;
 
-  if (props.headernames[0]) {
-    headers = Object.keys(props.headernames[0]);
+  if (headernames[0]) {
+    headers = Object.keys(headernames[0]);
   }
 
   return (
@@ -14,7 +14,7 @@ const TableHeaders = (props) => {
       <tr key={1}>
         {headers &&
           headers.map((header) => {
-            return <TableSort key={header} headerText={header} loadIssues={props.loadIssues} data={props.headernames}/>;
+            return <TableSort key={header} headerText={header} loadIssues={loadIssues} data={headernames}/>;
           })}
       </tr>
     </thead>
