@@ -5,8 +5,7 @@ import './table.css';
 
 // When the filter text doesn't match, we show the full list of issues
 
-// const TableFilter = (props) => {
-const TableFilter = ({loadIssues, issues, headerText}) => {
+const TableFilter = ({ loadIssues, issues, headerText }) => {
   const [filterText, setFilter] = useState('');
 
   // using this state so we can reload the full issuelist
@@ -20,14 +19,12 @@ const TableFilter = ({loadIssues, issues, headerText}) => {
     // no search text in the search textbox
     // show all issues
     if (filterText.length === 0) {
-      //setIssues(allIssues);
       loadIssues(allIssues);
     }
 
     return (
       allIssues &&
       allIssues.filter((issue) => {
-        console.log(issue.url.toLowerCase());
         return filterText.length > 0
           ? issue.selector.toLowerCase().includes(filterText.toLowerCase()) ||
               issue.url.toLowerCase().includes(filterText.toLowerCase())
@@ -44,9 +41,7 @@ const TableFilter = ({loadIssues, issues, headerText}) => {
 
   return (
     <div className="filterHeader">
-      <label className="filterHeaderLabel">
-        {headerText.toUpperCase()}
-      </label>
+      <label className="filterHeaderLabel">{headerText.toUpperCase()}</label>
       <input
         type="text"
         onChange={(e) => {

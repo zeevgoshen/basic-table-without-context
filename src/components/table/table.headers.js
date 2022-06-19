@@ -1,8 +1,8 @@
-import React from "react";
-import TableSort from "./table.sort.js";
-import "./table.css";
+import React from 'react';
+import TableSort from './table.sort.js';
+import './table.css';
 
-const TableHeaders = ({headernames, loadIssues}) => {
+const TableHeaders = ({ headernames, loadIssues }) => {
   let headers;
 
   if (headernames[0]) {
@@ -14,7 +14,14 @@ const TableHeaders = ({headernames, loadIssues}) => {
       <tr key={1}>
         {headers &&
           headers.map((header) => {
-            return <TableSort key={header} headerText={header} loadIssues={loadIssues} data={headernames}/>;
+            return (
+              <TableSort
+                key={header}
+                headerText={header}
+                loadIssues={loadIssues}
+                data={headernames}
+              />
+            );
           })}
       </tr>
     </thead>

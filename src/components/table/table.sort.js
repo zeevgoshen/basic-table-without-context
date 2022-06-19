@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { IssuesContext } from "../../App";
+import React, { useState, useContext } from 'react';
+import { IssuesContext } from '../../App';
 import {
   NO,
   ID,
@@ -7,24 +7,20 @@ import {
   ISSUETYPE,
   SELECTOR,
   URL,
-} from "../../constants/strings.js";
-import TableFilter from "./table.filter.js";
-import "./table.css";
+} from '../../constants/strings.js';
+import TableFilter from './table.filter.js';
+import './table.css';
 
-const TableSort = ({loadIssues, headerText, data}) => {
+const TableSort = ({ loadIssues, headerText, data }) => {
   const [isActive, setIsActive] = useState(true);
-
-  //const { issues, setIssues } = useContext(IssuesContext);
-
-  const [sortField, setSortField] = useState("");
-  const [order, setOrder] = useState("asc");
-
+  const [sortField, setSortField] = useState('');
+  const [order, setOrder] = useState('asc');
 
   const handleSortingChange = (accessor) => {
     setIsActive((current) => !current);
 
     const sortOrder =
-      accessor === sortField && order === "asc" ? "desc" : "asc";
+      accessor === sortField && order === 'asc' ? 'desc' : 'asc';
 
     setSortField(accessor);
     setOrder(sortOrder);
@@ -44,9 +40,9 @@ const TableSort = ({loadIssues, headerText, data}) => {
           return 0;
         }
         return (
-          a[sortField].toString().localeCompare(b[sortField].toString(), "en", {
+          a[sortField].toString().localeCompare(b[sortField].toString(), 'en', {
             numeric: true,
-          }) * (sortOrder === "asc" ? 1 : -1)
+          }) * (sortOrder === 'asc' ? 1 : -1)
         );
       });
       loadIssues(sorted);
@@ -57,7 +53,7 @@ const TableSort = ({loadIssues, headerText, data}) => {
     <th
       className="columnHeader"
       key={headerText}
-      style={{ backgroundColor: isActive ? "#607085" : "#435060" }}
+      style={{ backgroundColor: isActive ? '#607085' : '#435060' }}
       onClick={() => handleSortingChange(headerText)}
     >
       <div>
@@ -65,8 +61,7 @@ const TableSort = ({loadIssues, headerText, data}) => {
           <div style={{}}>
             {headerText === ID ? (
               NO
-            ) : headerText.toUpperCase() |
-              (headerText === ISSUETYPE) ? (
+            ) : headerText.toUpperCase() | (headerText === ISSUETYPE) ? (
               ISSUE_TYPE
             ) : headerText.toUpperCase() |
               (headerText.toUpperCase() === SELECTOR ||
@@ -82,7 +77,7 @@ const TableSort = ({loadIssues, headerText, data}) => {
             )}
           </div>
           <div className="sortButtonsContainer">
-            {order === "asc" ? (
+            {order === 'asc' ? (
               <button className="sortButton asc">▲</button>
             ) : (
               <button className="sortButton desc">▼</button>
