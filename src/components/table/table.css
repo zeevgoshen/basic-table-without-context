@@ -1,0 +1,64 @@
+table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  width: "auto";
+  height: "auto";
+}
+
+th,
+td {
+  padding: 10px 0px 10px 10px;
+  font-family: "Lato", sans-serif;
+}
+
+.filterTextBox {
+  height: 35px;
+  background-color: #fff;
+  border-radius: 25px;
+  border: 1px solid white;
+}
+.columnHeader {
+  font-size: 12px;
+  height: 45px;
+  color: white;
+  background-color: #607085;
+
+  width: 350px;
+  border: 1px solid white;
+  text-align: left;
+}
+.trSeparator {
+  border-bottom: 1px solid #607085;
+}
+.columnCell {
+  height: 45px;
+  font-size: 12px;
+  color: #131516;
+  background-color: #fff;
+}
+
+.filterHeader {
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+.filterHeaderLabel {
+  padding-right: 10px;
+}
+.sortButtonsContainer {
+  width: 15px;
+  float: left;
+  margin-right: 10px;
+}
+
+.sortButton {
+  width: 15px;
+  border: none;
+  background-color: transparent;
+  color: white;
+}
+
+.buttonsAndLabel {
+  display: flex;
+  align-items: center;
+}
