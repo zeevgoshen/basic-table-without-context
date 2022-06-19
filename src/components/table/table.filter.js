@@ -10,50 +10,52 @@ const TableFilter = (props) => {
 
   // using this state so we can reload the full issuelist
   // when no results are found
-  //const [allIssues, setAllIssues] = useState(props.issues);
+  const [allIssues, setAllIssues] = useState(props.issues);
 
   // We will be using setIssues (from context) to update
   // the table with the filtered results
   //const { issues, setIssues } = useContext(IssuesContext);
 
-  // const filteredIssues = useMemo(() => {
-  //   // no search text in the search textbox
-  //   // show all issues
-  //   if (filterText.length === 0) {
-  //     //setIssues(allIssues);
-  //     props.loadIssues(props.data)
-  //   }
+  const filteredIssues = useMemo(() => {
+    // no search text in the search textbox
+    // show all issues
+    if (filterText.length === 0) {
+      //setIssues(allIssues);
+      console.log("1")
+      console.log(allIssues)
+      props.loadIssues(allIssues)
+    }
 
-  //   return props.data.filter((issue) => {
-  //     return filterText.length > 0
-  //       ? issue.selector.toLowerCase().includes(filterText.toLowerCase()) ||
-  //           issue.url.toLowerCase().includes(filterText.toLowerCase())
-  //       : props.data;
-  //   });
-  // }, [filterText, props.data]);
+    return allIssues && allIssues.filter((issue) => {
+      return filterText.length > 0
+        ? issue.selector.toLowerCase().includes(filterText.toLowerCase()) ||
+            issue.url.toLowerCase().includes(filterText.toLowerCase())
+        : allIssues;
+    });
+  }, [filterText, allIssues]);
 
-  // if (filteredIssues.length > 0 && filteredIssues.length < allIssues.length) {
-  //   props.loadIssues(filteredIssues);
-  // } else if (filteredIssues.length === 0) {
-  //   props.loadIssues(props.data);
-  // }
+  if (filteredIssues.length > 0 && filteredIssues.length < allIssues.length) {
+    props.loadIssues(filteredIssues);
+  } else if (filteredIssues.length === 0) {
+    props.loadIssues(allIssues);
+  }
 
-  // return (
-  //   <div className="filterHeader">
-  //     <label className="filterHeaderLabel">
-  //       {props.headerText.toUpperCase()}
-  //     </label>
-  //     <input
-  //       type="text"
-  //       onChange={(e) => {
-  //         setFilter(e.target.value);
-  //       }}
-  //       onClick={(e) => {
-  //         e.stopPropagation();
-  //       }}
-  //       className="filterTextBox"
-  //     />
-  //   </div>
-  // );
+  return (
+    <div className="filterHeader">
+      <label className="filterHeaderLabel">
+        {props.headerText.toUpperCase()}
+      </label>
+      <input
+        type="text"
+        onChange={(e) => {
+          setFilter(e.target.value);
+        }}
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+        className="filterTextBox"
+      />
+    </div>
+  );
 };
 export default TableFilter;
